@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.engine.core;
+package com.sd.absa.engine.core;
 
 import ch.qos.logback.classic.Logger;
 

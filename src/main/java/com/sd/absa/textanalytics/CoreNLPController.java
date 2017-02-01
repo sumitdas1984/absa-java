@@ -1,32 +1,24 @@
-package com.dsp.nlptoolkit.textanalytics;
+package com.sd.absa.textanalytics;
 
 
 import edu.stanford.nlp.ling.CoreAnnotations;
+import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.Sentence;
-import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation;
-import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
 import edu.stanford.nlp.trees.tregex.TregexMatcher;
 import edu.stanford.nlp.trees.tregex.TregexPattern;
-
+import edu.stanford.nlp.util.CoreMap;
+import org.codehaus.jettison.json.JSONObject;
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.TreeMap;
-
-import org.codehaus.jettison.json.JSONObject;
 
 /**
  * Created by sumitd on 1/18/16.
@@ -71,7 +63,7 @@ public class CoreNLPController {
         for (CoreMap sentence : sentences) {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
-            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+            for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
                 // this is the text of the token
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
@@ -100,7 +92,7 @@ public class CoreNLPController {
         List<CoreMap> sentences =  getAnnotationCoreMap(documentText);
 
         for (CoreMap sentence : sentences) {
-            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+            for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
                 lemmas.add(token.get(CoreAnnotations.LemmaAnnotation.class));
             }
         }

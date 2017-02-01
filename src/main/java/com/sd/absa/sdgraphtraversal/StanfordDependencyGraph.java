@@ -1,31 +1,20 @@
 /**
  * 
  */
-package com.dsp.nlptoolkit.sdgraphtraversal;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.regex.Pattern;
-
-import com.dsp.nlptoolkit.engine.core.ToolKitLogger;
-import com.dsp.nlptoolkit.textanalytics.PosTags;
+package com.sd.absa.sdgraphtraversal;
 
 import ch.qos.logback.classic.Logger;
+import com.sd.absa.engine.core.ToolKitLogger;
+import com.sd.absa.textanalytics.PosTags;
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphEdge;
 import edu.stanford.nlp.trees.GrammaticalRelation;
-import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * @author Koustuv Saha

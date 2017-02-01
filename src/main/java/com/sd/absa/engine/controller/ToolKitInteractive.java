@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.engine.controller;
+package com.sd.absa.engine.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

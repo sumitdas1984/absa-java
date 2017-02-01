@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.productreview;
+package com.sd.absa.productreview;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ public class Result {
 	private String description;
 	
 	private List<EntitySentiment> entitySentiment;
-	
-	
+
+
 	public Result(String link, String type, String description, List<EntitySentiment> aspectSentiment) {
 		super();
 		this.link = link;

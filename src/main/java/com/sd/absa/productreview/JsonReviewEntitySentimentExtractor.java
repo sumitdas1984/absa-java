@@ -1,20 +1,15 @@
-package com.dsp.nlptoolkit.productreview;
+package com.sd.absa.productreview;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.google.gson.Gson;
+import com.sd.absa.engine.core.ToolKitExpression;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import com.dsp.nlptoolkit.engine.core.ToolKitExpression;
-import com.google.gson.Gson;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
 
 public class JsonReviewEntitySentimentExtractor {
 
@@ -87,7 +82,7 @@ public class JsonReviewEntitySentimentExtractor {
 		Iterator itr = temp.iterator();
 		while (itr.hasNext()) {
 			Map.Entry pair = (Map.Entry) itr.next();
-			EntitySentiment  aspectSentiment = new EntitySentiment((String)pair.getKey(), (String)pair.getValue());
+			EntitySentiment aspectSentiment = new EntitySentiment((String)pair.getKey(), (String)pair.getValue());
 			returnList.add(aspectSentiment);
 		}
 

@@ -1,18 +1,14 @@
-package com.dsp.nlptoolkit.engine.core;
+package com.sd.absa.engine.core;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
-
-import com.dsp.nlptoolkit.textanalytics.CoreNLPController;
-
-import ch.qos.logback.classic.Logger;
+import com.sd.absa.textanalytics.CoreNLPController;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
+
+import java.util.List;
 
 public class ToolKitText {
 

@@ -1,11 +1,11 @@
-package com.dsp.nlptoolkit.sdgraphtraversal;
+package com.sd.absa.sdgraphtraversal;
+
+import edu.stanford.nlp.semgraph.SemanticGraphEdge;
+import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
-import edu.stanford.nlp.semgraph.SemanticGraphEdge;
-import edu.stanford.nlp.trees.UniversalEnglishGrammaticalRelations;
 
 /**
  * 

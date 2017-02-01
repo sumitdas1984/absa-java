@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.textanalytics;
+package com.sd.absa.textanalytics;
 
 /**
  * Created by sumitd on 1/22/16.

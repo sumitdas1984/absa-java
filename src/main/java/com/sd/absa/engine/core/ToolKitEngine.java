@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.engine.core;
+package com.sd.absa.engine.core;
 
 /**
  * Created by sumitd on 1/19/16.

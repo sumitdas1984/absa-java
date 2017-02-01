@@ -1,4 +1,4 @@
-package com.dsp.nlptoolkit.productreview;
+package com.sd.absa.productreview;
 
 public class EntitySentiment {
 

@@ -1,4 +1,11 @@
-package com.dsp.nlptoolkit.engine.core;
+package com.sd.absa.engine.core;
+
+import ch.qos.logback.classic.Logger;
+import com.sd.absa.sdgraphtraversal.StanfordDependencyGraph;
+import com.sd.absa.textanalytics.CoreNLPController;
+import edu.stanford.nlp.semgraph.SemanticGraph;
+import edu.stanford.nlp.util.CoreMap;
+import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,30 +14,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
-
-import com.dsp.nlptoolkit.sdgraphtraversal.StanfordDependencyGraph;
-import com.dsp.nlptoolkit.textanalytics.CoreNLPController;
-
-import ch.qos.logback.classic.Logger;
-import edu.stanford.nlp.ling.IndexedWord;
-import edu.stanford.nlp.semgraph.SemanticGraph;
-import edu.stanford.nlp.util.CoreMap;
-
-public class ToolKitExpression extends ToolKitText{
+public class ToolKitExpression extends ToolKitText {
 
 	private static Logger logger;
 	private static List<String> stopWordList;
-	
+
 	public ToolKitExpression(String reviewStr) {
 		super(reviewStr);
 	}
-	
+
 	public Map<String, String> getSentiment() {
 		Map<String, String> review_entitySentimentMap = this.processPipeline();
 
 		Map<String, String> review_entitySentimentMap_refined = new LinkedHashMap<String, String>();
-		
+
 		for (Map.Entry<String, String> entry : review_entitySentimentMap.entrySet()) {
 			String entity = entry.getKey();
 			String sentiment = entry.getValue();
@@ -45,32 +42,32 @@ public class ToolKitExpression extends ToolKitText{
 
 		return review_entitySentimentMap_refined;
 	}
-	
+
 	public Map<String, String> processPipeline() {
 		List<CoreMap> sentencesList = getSentences();
 //		System.out.println("@@sentencesList: "+sentencesList);
 		System.out.println("@@logger: "+logger);
 		logger.info("sentencesList: "+sentencesList);
-		
+
 		Map<String, String> review_entitySentimentMap = new LinkedHashMap<String, String>();
-		
+
 		for(CoreMap sentence : sentencesList) {
 			logger.info("sentence: "+sentence);
 			String stanfordSentiment = this.getStanfordSentiment(sentence);
 //			System.out.println("@@sentence: "+sentence+"\t"+stanfordSentiment);
 			logger.info("stanfordSentiment: "+stanfordSentiment);
-			
+
 			SemanticGraph semanticDepGraph = this.getDependencyGraph(sentence);
 //			System.out.println("@@semanticDepGraph: "+sentence+"\t"+semanticDepGraph);
-			
+
 			StanfordDependencyGraph sdg = new StanfordDependencyGraph(semanticDepGraph);
-			
+
 			Map<String, Set<String>> entityOpinionMap = null;
 			if (sdg != null) {
 				entityOpinionMap = sdg.getEntityOpinionMap();
 				logger.info("entityOpinionMap: "+entityOpinionMap);
 			}
-			
+
 			Map<String, String> entitySentimentMap = new LinkedHashMap<String, String>();
 			for (Map.Entry<String, Set<String>> entry : entityOpinionMap.entrySet()) {
 				String entity = entry.getKey();
@@ -81,7 +78,7 @@ public class ToolKitExpression extends ToolKitText{
 			review_entitySentimentMap.putAll(entitySentimentMap);
 		}
 		logger.info("review_entitySentimentMap: "+review_entitySentimentMap);
-		
+
 		return review_entitySentimentMap;
 	}
 
@@ -93,7 +90,7 @@ public class ToolKitExpression extends ToolKitText{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void init() {
 		CoreNLPController.init();
         ToolKitLogger.init();
