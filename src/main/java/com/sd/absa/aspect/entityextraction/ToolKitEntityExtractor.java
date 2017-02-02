@@ -16,14 +16,18 @@ import java.util.Set;
 
 public class ToolKitEntityExtractor {
 
-	private static Annotation document;
+	//	private static Annotation document;
+	private Annotation document;
 
 	public static void main(String[] args) throws Exception {
 
 		ToolKitExpression.init();
 
 		String doc = "Meets marketing and sales financial objectives by forecasting requirements; preparing an annual budget; scheduling expenditures; analyzing variances; initiating corrective actions. Determines annual and gross-profit plans by forecasting and developing annual sales quotas for regions; projecting expected sales volume and profit for existing and new products; analyzing trends and results; establishing pricing strategies; recommending selling prices; monitoring costs, competition, supply, and demand.";
-		System.out.println(extractReviewEntities(doc));
+//		System.out.println(extractReviewEntities(doc));
+		ToolKitEntityExtractor tee = new ToolKitEntityExtractor();
+		Set<String> reviewEntitySet = tee.extractReviewEntities(doc);
+		System.out.println(reviewEntitySet);
 	}
 
 //	public static List<String> extractEntityList(String text) throws
@@ -47,12 +51,17 @@ public class ToolKitEntityExtractor {
 //		return entityList;
 //	}
 
-	private static void annotateDocument(String review) {
+//	private static void annotateDocument(String review) {
+//		document = new Annotation(review);
+//		CoreNLPController.getPipeline().annotate(document);
+//	}
+
+	private void annotateDocument(String review) {
 		document = new Annotation(review);
 		CoreNLPController.getPipeline().annotate(document);
 	}
 
-	public static List<String> extractEntityList(CoreMap sentence) throws Exception {
+	public List<String> extractEntityList(CoreMap sentence) throws Exception {
 		List<String> entityList = new ArrayList<String>();
 		String entity = "";
 		for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
@@ -70,19 +79,17 @@ public class ToolKitEntityExtractor {
 		return entityList;
 	}
 
-	public static Set<String> extractReviewEntities(String review) throws Exception {
+	public Set<String> extractReviewEntities(String review) throws Exception {
 
 		Set<String> reviewEntitySet = new HashSet<String>();
 
-		annotateDocument(review);
+		this.annotateDocument(review);
 		List<CoreMap> sentencesList = document.get(SentencesAnnotation.class);
 		for (CoreMap sentence : sentencesList) {
 //			System.out.println(extractEntityList(sentence));
 			List<String> sentenceEntityList = extractEntityList(sentence);
 			reviewEntitySet.addAll(sentenceEntityList);
 		}
-
 		return reviewEntitySet;
 	}
-
 }

@@ -1,6 +1,7 @@
 package com.sd.absa.textanalytics;
 
 
+import com.sd.absa.engine.config.ToolKitConfig;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -54,6 +55,24 @@ public class CoreNLPController {
         List<CoreMap> annotationCoreMap = document.get(CoreAnnotations.SentencesAnnotation.class);
         return annotationCoreMap;
     }
+
+//    public static String lemmatizeToString(ToolKitConfig.Languages language, String str) {
+//        String lemma = wordLemmaMaps.get(language).get(str);
+//        if (lemma == null) {
+//            StringBuilder lemmatizedSB = new StringBuilder();
+//            List<String> tokenList = ProcessString.tokenizeString(language, str);
+//            for (String token : tokenList) {
+//                lemma = wordLemmaMaps.get(language).get(token);
+//                if (lemma == null) {
+//                    lemma = lemmaAnnotate(language, token);
+//                }
+//                lemmatizedSB.append(lemma).append(" ");
+//            }
+//            lemma = lemmatizedSB.toString().trim();
+//        }
+//        // return lemmatizedStr.toString().trim();
+//        return lemma;
+//    }
 
     public static List<String> getPOS(String documentText) throws Exception {
         List<String> posList = new LinkedList<String>();
