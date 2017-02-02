@@ -1,4 +1,4 @@
-package com.sd.absa.productreview;
+package com.sd.absa.customer.productreview;
 
 import java.util.List;
 

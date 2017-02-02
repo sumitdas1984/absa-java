@@ -1,4 +1,4 @@
-package com.sd.absa.productreview;
+package com.sd.absa.customer.productreview;
 
 import com.google.gson.Gson;
 import com.sd.absa.engine.core.ToolKitExpression;
@@ -74,7 +74,7 @@ public class JsonReviewEntitySentimentExtractor {
 	}
 
 	private static List<EntitySentiment> iterateHashMap(Map<String, String> entitySentimentMap) {
-		
+
 		List<EntitySentiment> returnList = new ArrayList<EntitySentiment>();
 
 		Set temp = entitySentimentMap.entrySet();
