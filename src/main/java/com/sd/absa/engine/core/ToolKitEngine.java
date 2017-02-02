@@ -50,7 +50,7 @@ public class ToolKitEngine {
 		return mlMode;
 	}
 
-	private static void init(String... varargs) {
+	public static void init(String... varargs) {
 
 		String propsFile = "config/xpressoConfig.properties";
 
