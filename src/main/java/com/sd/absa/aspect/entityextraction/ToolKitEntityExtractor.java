@@ -10,9 +10,11 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.util.CoreMap;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class EntityExtraction {
+public class ToolKitEntityExtractor {
 
 	private static Annotation document;
 
@@ -21,12 +23,7 @@ public class EntityExtraction {
 		ToolKitExpression.init();
 
 		String doc = "Meets marketing and sales financial objectives by forecasting requirements; preparing an annual budget; scheduling expenditures; analyzing variances; initiating corrective actions. Determines annual and gross-profit plans by forecasting and developing annual sales quotas for regions; projecting expected sales volume and profit for existing and new products; analyzing trends and results; establishing pricing strategies; recommending selling prices; monitoring costs, competition, supply, and demand.";
-		// System.out.println(extractEntityList(doc));
-		annotateDocument(doc);
-		List<CoreMap> sentencesList = document.get(SentencesAnnotation.class);
-		for (CoreMap sentence : sentencesList) {
-			System.out.println(extractEntityList(sentence));
-		}
+		System.out.println(extractReviewEntities(doc));
 	}
 
 //	public static List<String> extractEntityList(String text) throws
@@ -72,4 +69,20 @@ public class EntityExtraction {
 		}
 		return entityList;
 	}
+
+	public static Set<String> extractReviewEntities(String review) throws Exception {
+
+		Set<String> reviewEntitySet = new HashSet<String>();
+
+		annotateDocument(review);
+		List<CoreMap> sentencesList = document.get(SentencesAnnotation.class);
+		for (CoreMap sentence : sentencesList) {
+//			System.out.println(extractEntityList(sentence));
+			List<String> sentenceEntityList = extractEntityList(sentence);
+			reviewEntitySet.addAll(sentenceEntityList);
+		}
+
+		return reviewEntitySet;
+	}
+
 }
